@@ -1,0 +1,11 @@
+body {
+    background-color: #212121;
+    color: white
+}
+#greeting {
+    position: absolute;
+    right: 10px;
+}
+#logo{
+    border-radius: 50%;
+}

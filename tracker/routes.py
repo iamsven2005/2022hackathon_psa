@@ -83,3 +83,7 @@ def chat():
 @login_required
 def user_dashboard():
     return render_template("user_dashboard.html")
+
+@app.route('/whiteboard')
+def whiteboard():
+    return render_template('dummy_whiteboard.html')

@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block title %} 
+    Homepage
+{% endblock %} 
+    {% block content %}
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+        <link href="{{ url_for('static', filename='styles/hackmebitch.css') }}" rel="stylesheet">
+        <style>
+            .container div {
+                border:0px;
+                width: 100%;
+                text-align: center;
+                float: none;
+                margin: 20px;
+                transition: all 0.5s ease;
+            }
+            .hidden{
+                display: none;
+            }
+        </style>
+    </head>
+        <h1>Home Page</h1>
+        <h2>Profile</h2>
+        <form style="text-align: center;">
+            <select class="access-type-select">
+                {% if current_user.occupation == "adm" %}
+                    <option value="All departments">Administrator</option>
+                {% elif current_user.occupation == "gpegt" %}
+                    <option value="GPE&GT">Group Process Excellence & Group Technology</option>
+                {% elif current_user.occupation == "gscs" %}
+                    <option value="GSCS">Group Strategy & Cargo Solutions</option>
+                {% elif current_user.occupation == "gccs" %}
+                    <option value="GS&CS">General Counsel & Company Secretary</option>
+                {% elif current_user.occupation == "gcagl" %}
+                    <option value="GCA&GL">Group Corporate Affairs & Group Learning</option>
+                {% elif current_user.occupation == "gcs" %}
+                    <option value="GC&SCSS">Group Commercial & Supply Chain Sustainability Solutions</option>
+                {% elif current_user.occupation == "hr" %}
+                    <option value="HR">Human Resource</option>
+                {% elif current_user.occupation == "fin" %}
+                    <option value="FINANCE">Finance</option>
+                {% elif current_user.occupation == "inter" %}
+                    <option value="INTERNATIONAL">NorthEast Asia, Middle East, SEA, Europe + America</option>
+                {% endif %}
+            </select>
+            <input type="button" id="mixBut" value="Start" />     
+        </form>
+        <br/>
+        <br/>
+
+        <div class="container">
+            {% if current_user.occupation == "adm" %}
+                <div data-accesstype="GPE&GT">Chatroom 1 <input type="button" id="enter" value="&crarr;"></div>
+                <div data-accesstype="GSCS">Chatroom 2 <input type="button" id="enter" value="&crarr;"></div>
+                <div data-accesstype="GS&CS">Chatroom 3 <input type="button" id="enter" value="&crarr;"></div>
+                <div data-accesstype="GCA&GL"> Chatroom 4 <input type="button" id="enter" value="&crarr;"></div>
+                <div data-accesstype="GC&SCSS"> Chatroom 5 <input type="button" id="enter" value="&crarr;"></div>
+                <div data-accesstype="HR"> Chatroom 6 <input type="button" id="enter" value="&crarr;"></div>
+                <div data-accesstype="FINANCE"> Chatroom 7 <input type="button" id="enter" value="&crarr;"></div>
+                <div data-accesstype="INTERNATIONAL"> Chatroom 8 <input type="button" id="enter" value="&crarr;"></div>
+            {% elif current_user.occupation == "gpegt" %}
+                <div data-accesstype="GPE&GT">Chatroom 1 <input type="button" id="enter" value="&crarr;"></div>
+            {% elif current_user.occupation == "gscs" %}
+                <div data-accesstype="GSCS">Chatroom 2 <input type="button" id="enter" value="&crarr;"></div>
+            {% elif current_user.occupation == "gccs" %}
+                <div data-accesstype="GS&CS">Chatroom 3 <input type="button" id="enter" value="&crarr;"></div>
+            {% elif current_user.occupation == "gcagl" %}
+                <div data-accesstype="GCA&GL"> Chatroom 4 <input type="button" id="enter" value="&crarr;"></div>
+            {% elif current_user.occupation == "gcs" %}
+                <div data-accesstype="GC&SCSS"> Chatroom 5 <input type="button" id="enter" value="&crarr;"></div>
+            {% elif current_user.occupation == "hr" %}
+                <div data-accesstype="HR"> Chatroom 6 <input type="button" id="enter" value="&crarr;"></div>
+            {% elif current_user.occupation == "fin" %}
+                <div data-accesstype="FINANCE"> Chatroom 7 <input type="button" id="enter" value="&crarr;"></div>
+            {% elif current_user.occupation == "inter" %}
+                <div data-accesstype="INTERNATIONAL"> Chatroom 8 <input type="button" id="enter" value="&crarr;"></div>
+            {% endif %}
+        </div>
+        <script>
+            /*
+            $( ".access-type-select" ).change(function() {
+            var selectedEventType = this.options[this.selectedIndex].value;
+            if (selectedEventType == "All departments") {
+                $('.container div').removeClass('hidden');
+            } else {
+                $('.container div').addClass('hidden');
+                $('.container div[data-accesstype="' + selectedEventType + '"]').removeClass('hidden');
+            }
+            });
+            */
+            var mixBut = document.getElementById("mixBut");
+            mixBut.addEventListener("click", Start);
+        
+            function Start(){
+                console.log("Started");
+                mixBut.removeEventListener("click", Start);
+                window.open("https://gun-chat-dapp.web.app/");
+                mixBut.addEventListener("click", Stop);
+                mixBut.value = "Stop";
+            }
+        
+            function Stop(){
+                console.log("Stopped");
+                mixBut.removeEventListener("click", Stop);
+                mixBut.addEventListener("click", Start);
+                mixBut.value = "Start";
+            }
+            </script>
+        
+    {% endblock %}
+    

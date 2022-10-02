@@ -16,7 +16,7 @@ def register_page():
     form = RegisterForm()
     if form.validate_on_submit():
         # checks whether the username, email_address and password are valid
-        user_to_create = User(username=form.username.data,email_address=form.email_address.data,password=form.password1.data)
+        user_to_create = User(username=form.username.data,email_address=form.email_address.data,password=form.password1.data, occupation=form.occupation.data)
         # if this is True, then add the newly set user credentials to the newly created account
         db.session.add(user_to_create)
         db.session.commit()
@@ -72,6 +72,12 @@ def admin_page():
     else:
         flash("Sorry you must be admin!", category="warning")
         return redirect(url_for('user_dashboard')) 
+
+@app.route('/chat')
+@login_required
+def chat():
+    return render_template("chat.html")
+
 
 @app.route('/dashboard')
 @login_required

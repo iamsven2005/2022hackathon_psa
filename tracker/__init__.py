@@ -8,9 +8,9 @@ app = Flask(__name__)
 
 #link to a database table
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://tmkstyyzkczmxk:38aa0429f59ca322ba50b49b993a82dcf288bec4e54e7064ceb960231dca317f@ec2-3-217-14-181.compute-1.amazonaws.com:5432/deeij0oo06d2gg'
+
 #important to include your secret key before running your app!
-app.config['SECRET_KEY'] = 'u8x/A%D*G-KaPdSgVkYp3s6v9y$B&E(H'
+app.config['SECRET_KEY'] = ''
 #connect your app to your db
 db = SQLAlchemy(app)
 #to run the hash generator for your app

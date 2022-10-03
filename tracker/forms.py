@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, SelectField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
 from tracker.models import User
 
@@ -21,6 +21,7 @@ class RegisterForm(FlaskForm):
     email_address = StringField(label='Email Address:', validators=[Email(), DataRequired()])
     password1 = PasswordField(label='Password:', validators=[Length(min=8), DataRequired()])
     password2 = PasswordField(label='Confirm Password:', validators=[EqualTo('password1'), DataRequired()])
+    occupation = SelectField('Department:', choices=[('adm', 'admin'), ('gpegt', 'Group Process Excellence & Group Technology'), ('gscs', 'Group Strategy & Cargo Solutions'), ('gccs', 'General Counsel & Company Secretary'), ('gcagl', 'Group Corporate Affairs & Group Learning'), ('gcs', 'Group Commercial & Supply Chain Sustainability Solutions'),('hr','Human Resource'),('fin', 'Finance'),('inter', 'International(NorthEast Asia, Middle East, SEA, Europe + America)')])
     submit = SubmitField(label='Create Account')
 
 class LoginForm(FlaskForm):
